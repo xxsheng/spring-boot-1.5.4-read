@@ -98,7 +98,7 @@
 	<repositories>
 		<repository>
 			<id>gradle</id>
-			<url>http://repo.gradle.org/gradle/libs-releases-local</url>
+			<url>http://192.168.137.200:8088/content/groups/public</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
