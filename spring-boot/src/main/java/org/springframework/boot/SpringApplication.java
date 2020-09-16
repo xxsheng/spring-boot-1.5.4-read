@@ -296,6 +296,7 @@ public class SpringApplication {
 			ConfigurableEnvironment environment = prepareEnvironment(listeners,
 					applicationArguments);
 			Banner printedBanner = printBanner(environment);
+			// 初始化spring容器
 			context = createApplicationContext();
 			analyzers = new FailureAnalyzers(context);
 			prepareContext(context, environment, listeners, applicationArguments,
@@ -352,6 +353,7 @@ public class SpringApplication {
 		// Load the sources
 		Set<Object> sources = getSources();
 		Assert.notEmpty(sources, "Sources must not be empty");
+		// 注册启动类为beanDefinition
 		load(context, sources.toArray(new Object[sources.size()]));
 		listeners.contextLoaded(context);
 	}
