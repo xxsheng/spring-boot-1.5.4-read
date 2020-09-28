@@ -253,6 +253,7 @@ public class SpringApplication {
 	}
 
 	private boolean deduceWebEnvironment() {
+		// 通过判断有没有web类(servlet和ConfigurableWebApplicationContext)
 		for (String className : WEB_ENVIRONMENT_CLASSES) {
 			if (!ClassUtils.isPresent(className, null)) {
 				return false;
