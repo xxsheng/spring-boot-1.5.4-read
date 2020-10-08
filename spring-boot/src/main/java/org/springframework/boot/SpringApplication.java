@@ -635,6 +635,7 @@ public class SpringApplication {
 		if (this.environment != null) {
 			loader.setEnvironment(this.environment);
 		}
+		// 加载启动类，并且注册启动到beandefinition
 		loader.load();
 	}
 

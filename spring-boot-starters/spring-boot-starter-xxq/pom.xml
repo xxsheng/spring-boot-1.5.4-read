@@ -31,4 +31,38 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<distributionManagement>
+		<!-- use the following if you're not using a snapshot version. -->
+		<repository>
+			<id>releases</id>
+			<name>local release nexus</name>
+			<url>http://192.168.137.200:8088/content/repositories/releases/</url>
+		</repository>
+		<!-- use the following if you ARE using a snapshot version. -->
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>local snapshots nexus</name>
+			<url>http://192.168.137.200:8088/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+<!--	&lt;!&ndash; deploy 附带yuan'ma  &ndash;&gt;-->
+<!--	<build>-->
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<artifactId>maven-source-plugin</artifactId>-->
+<!--				<version>2.1</version>-->
+<!--				<configuration>-->
+<!--					<attach>true</attach>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>compile</phase>-->
+<!--						<goals>-->
+<!--							<goal>jar</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>-->
 </project>
