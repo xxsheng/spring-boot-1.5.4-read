@@ -127,14 +127,19 @@ class OnPropertyCondition extends SpringBootCondition {
 		private final boolean matchIfMissing;
 
 		Spec(AnnotationAttributes annotationAttributes) {
+			// 如果有prefix则初始化prefix属性
 			String prefix = annotationAttributes.getString("prefix").trim();
 			if (StringUtils.hasText(prefix) && !prefix.endsWith(".")) {
 				prefix = prefix + ".";
 			}
 			this.prefix = prefix;
+			// 初始化havingvalue属性
 			this.havingValue = annotationAttributes.getString("havingValue");
+			// 获取所有names属性
 			this.names = getNames(annotationAttributes);
+			// 获取relaxedNames属性
 			this.relaxedNames = annotationAttributes.getBoolean("relaxedNames");
+			// 获取matchIfMissing属性
 			this.matchIfMissing = annotationAttributes.getBoolean("matchIfMissing");
 		}
 
@@ -153,14 +158,17 @@ class OnPropertyCondition extends SpringBootCondition {
 			if (this.relaxedNames) {
 				resolver = new RelaxedPropertyResolver(resolver, this.prefix);
 			}
+			// 解析所有name
 			for (String name : this.names) {
 				String key = (this.relaxedNames ? name : this.prefix + name);
+				// 第一步首先判断有没有属性，有的话看是否值是一致的
 				if (resolver.containsProperty(key)) {
 					if (!isMatch(resolver.getProperty(key), this.havingValue)) {
 						nonMatching.add(name);
 					}
 				}
 				else {
+					// 如果没有该值，则使用matchIfMissing属性处理
 					if (!this.matchIfMissing) {
 						missing.add(name);
 					}
@@ -170,8 +178,10 @@ class OnPropertyCondition extends SpringBootCondition {
 
 		private boolean isMatch(String value, String requiredValue) {
 			if (StringUtils.hasLength(requiredValue)) {
+				// 有值的情况下忽略大小写进行对比
 				return requiredValue.equalsIgnoreCase(value);
 			}
+			// 为空的情况下false进行对比
 			return !"false".equalsIgnoreCase(value);
 		}
 
