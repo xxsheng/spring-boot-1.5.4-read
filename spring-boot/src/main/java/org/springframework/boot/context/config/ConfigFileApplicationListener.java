@@ -153,6 +153,7 @@ public class ConfigFileApplicationListener implements EnvironmentPostProcessor,
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
+		// 当event事件为applicationEnvironmentPreparedEvent时，初始化环境变量
 		if (event instanceof ApplicationEnvironmentPreparedEvent) {
 			onApplicationEnvironmentPreparedEvent(
 					(ApplicationEnvironmentPreparedEvent) event);
