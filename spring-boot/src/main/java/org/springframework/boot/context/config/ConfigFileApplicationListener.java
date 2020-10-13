@@ -165,6 +165,7 @@ public class ConfigFileApplicationListener implements EnvironmentPostProcessor,
 
 	private void onApplicationEnvironmentPreparedEvent(
 			ApplicationEnvironmentPreparedEvent event) {
+		// 此处有俩个processor，springapplicationjsonenvironment以及cloudFoundry
 		List<EnvironmentPostProcessor> postProcessors = loadPostProcessors();
 		postProcessors.add(this);
 		AnnotationAwareOrderComparator.sort(postProcessors);
@@ -347,6 +348,8 @@ public class ConfigFileApplicationListener implements EnvironmentPostProcessor,
 			// Pre-existing active profiles set via Environment.setActiveProfiles()
 			// are additional profiles and config files are allowed to add more if
 			// they want to, so don't call addActiveProfiles() here.
+			// 通过profile标记不同的环境，可以通过设置spring.profiles.active和spring.profiles.default。
+			// 如果设置了active default便失去了作用，如果俩个都没有设置，那么带有profiles的bean都不会生成
 			Set<Profile> initialActiveProfiles = initializeActiveProfiles();
 			this.profiles.addAll(getUnprocessedActiveProfiles(initialActiveProfiles));
 			if (this.profiles.isEmpty()) {
@@ -361,6 +364,7 @@ public class ConfigFileApplicationListener implements EnvironmentPostProcessor,
 			// The default profile for these purposes is represented as null. We add it
 			// last so that it is first out of the queue (active profiles will then
 			// override any settings in the defaults when the list is reversed later).
+			// 支持不添加任何profiles注解的bean的生成
 			this.profiles.add(null);
 
 			while (!this.profiles.isEmpty()) {
@@ -372,6 +376,7 @@ public class ConfigFileApplicationListener implements EnvironmentPostProcessor,
 						load(location, null, profile);
 					}
 					else {
+						// 如果没有配置则默认从application.properties（xml，yml，yaml）等中加载，约定大于配置
 						for (String name : getSearchNames()) {
 							load(location, name, profile);
 						}
