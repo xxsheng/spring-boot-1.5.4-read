@@ -46,6 +46,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
  * @see EmbeddedWebApplicationContext
  * @see AnnotationConfigWebApplicationContext
  */
+// springbootweb容器
 public class AnnotationConfigEmbeddedWebApplicationContext
 		extends EmbeddedWebApplicationContext {
 

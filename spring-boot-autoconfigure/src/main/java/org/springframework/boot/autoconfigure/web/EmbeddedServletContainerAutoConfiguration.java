@@ -69,6 +69,7 @@ public class EmbeddedServletContainerAutoConfiguration {
 	/**
 	 * Nested configuration if Tomcat is being used.
 	 */
+	// 初始化tomcat
 	@Configuration
 	@ConditionalOnClass({ Servlet.class, Tomcat.class })
 	@ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)
@@ -84,6 +85,7 @@ public class EmbeddedServletContainerAutoConfiguration {
 	/**
 	 * Nested configuration if Jetty is being used.
 	 */
+	// 初始化jetty
 	@Configuration
 	@ConditionalOnClass({ Servlet.class, Server.class, Loader.class,
 			WebAppContext.class })
@@ -100,6 +102,7 @@ public class EmbeddedServletContainerAutoConfiguration {
 	/**
 	 * Nested configuration if Undertow is being used.
 	 */
+	// 初始化undertow
 	@Configuration
 	@ConditionalOnClass({ Servlet.class, Undertow.class, SslClientAuthMode.class })
 	@ConditionalOnMissingBean(value = EmbeddedServletContainerFactory.class, search = SearchStrategy.CURRENT)

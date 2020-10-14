@@ -131,6 +131,7 @@ public class EmbeddedWebApplicationContext extends GenericWebApplicationContext 
 	protected void onRefresh() {
 		super.onRefresh();
 		try {
+			// 初始化springbootweb容器
 			createEmbeddedServletContainer();
 		}
 		catch (Throwable ex) {
@@ -159,6 +160,7 @@ public class EmbeddedWebApplicationContext extends GenericWebApplicationContext 
 		EmbeddedServletContainer localContainer = this.embeddedServletContainer;
 		ServletContext localServletContext = getServletContext();
 		if (localContainer == null && localServletContext == null) {
+			// 获取servlet容器
 			EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFactory();
 			this.embeddedServletContainer = containerFactory
 					.getEmbeddedServletContainer(getSelfInitializer());

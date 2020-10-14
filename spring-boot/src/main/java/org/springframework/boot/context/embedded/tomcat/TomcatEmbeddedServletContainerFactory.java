@@ -176,6 +176,7 @@ public class TomcatEmbeddedServletContainerFactory
 			tomcat.getService().addConnector(additionalConnector);
 		}
 		prepareContext(tomcat.getHost(), initializers);
+		// 异步启动tomcat
 		return getTomcatEmbeddedServletContainer(tomcat);
 	}
 

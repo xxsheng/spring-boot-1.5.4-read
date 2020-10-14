@@ -520,6 +520,7 @@ public class SpringApplication {
 		Class<?> contextClass = this.applicationContextClass;
 		if (contextClass == null) {
 			try {
+				// 根据webEnvironment判断是否初始化webapplication
 				contextClass = Class.forName(this.webEnvironment
 						? DEFAULT_WEB_CONTEXT_CLASS : DEFAULT_CONTEXT_CLASS);
 			}
