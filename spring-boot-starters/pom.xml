@@ -73,6 +73,7 @@
 		<module>spring-boot-starter-xxq</module>
 	</modules>
 
+	<!-- test -->
 	<build>
 		<plugins>
 			<plugin>
